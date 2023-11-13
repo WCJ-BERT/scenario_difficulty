@@ -11,11 +11,11 @@ from torch.utils.tensorboard import SummaryWriter
 
 
 def train(model, loss_fn, optimizer, dataloader, use_gpu=False):
-    exp_name = 'experiment_1'
+    exp_name = 'experiment_2'
     writer = SummaryWriter('logs/' + exp_name)
     model_path = 'checkpoint/' + exp_name
     os.makedirs(model_path)
-    epoch_num = 2000
+    epoch_num = 1000
     for epoch in range(0, epoch_num):
 
         pbar = tqdm(total=len(dataloader), bar_format='{l_bar}{r_bar}', dynamic_ncols=True)
@@ -58,7 +58,7 @@ def main(gpu_id=None):
 
     model = Transformer(n_head=2)
 
-    loss_fn = torch.nn.MSELoss()
+    loss_fn = torch.nn.MSELoss() ### 均方误差损失
 
     optimizer = torch.optim.Adam(model.parameters())
 

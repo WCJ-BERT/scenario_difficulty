@@ -227,7 +227,11 @@ class Activation_Net(torch.nn.Module):
         super(Activation_Net, self).__init__()
         self.layer1 = torch.nn.Sequential(torch.nn.Linear(in_dim, n_hidden_1), torch.nn.ReLU(True))
         self.layer2 = torch.nn.Sequential(torch.nn.Linear(n_hidden_1, n_hidden_2), torch.nn.ReLU(True))
-        self.layer3 = torch.nn.Sequential(torch.nn.Linear(n_hidden_2, out_dim))
+        self.layer3 = torch.nn.Sequential(torch.nn.Linear(n_hidden_1, n_hidden_2), torch.nn.ReLU(True))
+        self.layer4 = torch.nn.Sequential(torch.nn.Linear(n_hidden_1, n_hidden_2), torch.nn.ReLU(True))
+        self.layer5 = torch.nn.Sequential(torch.nn.Linear(n_hidden_1, n_hidden_2), torch.nn.ReLU(True))
+        self.layer6 = torch.nn.Sequential(torch.nn.Linear(n_hidden_1, n_hidden_2), torch.nn.ReLU(True))
+        self.layer7 = torch.nn.Sequential(torch.nn.Linear(n_hidden_2, out_dim))
         self.sigmoid = torch.nn.Sigmoid()
         """
         这里的Sequential()函数的功能是将网络的层组合到一起。
@@ -237,6 +241,10 @@ class Activation_Net(torch.nn.Module):
         x = self.layer1(x)
         x = self.layer2(x)
         x = self.layer3(x)
+        x = self.layer4(x)
+        x = self.layer5(x)
+        x = self.layer6(x)
+        x = self.layer7(x)
         # x = self.sigmoid(x) - 0.5  # 缩放输出到 0.5 到 4 的范围
         return x
 
