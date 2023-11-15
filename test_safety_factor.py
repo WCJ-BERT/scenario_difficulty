@@ -55,7 +55,8 @@ def main():
     random_row_index = np.random.choice(data_value.shape[0])
     random_row_index = 200
     data_info = data_value[random_row_index, :]
-    data_info[8] = 0.8
+    data_info[7] = 0.8
+    print(data_info)
     x = torch.Tensor(data_info[2:8]).float().unsqueeze(dim=-1).unsqueeze(dim=0)  # 示例特征数据特征数据
     # labels = torch.Tensor(data_value[:, 8:10]).float().unsqueeze(dim=-1)  # 示例标签数据
     actual_data = data_value[:, 8:10][random_row_index]
@@ -70,10 +71,10 @@ def main():
     predicted_data[0] = np.clip(predicted_data[0], -1.0, 1.0) * (19 - 7) / 2 + (19 + 7) / 2
     predicted_data[1] = np.clip(predicted_data[1], -1.0, 1.0) * (0.25 - (-1)) / 2 + (0.25 + (-1)) / 2
 
-    print("预测数据={}，真值={}".format(actual_data, predicted_data))
+    print("预测数据={}，真值={}".format(predicted_data,actual_data ))
     print("偏差={}".format(predicted_data-actual_data))
-    dec_scores = model.encoder.scores_for_paint
-    paint_score(dec_scores[0], x, pred)  # [0]是去batch中的第0个
+    # dec_scores = model.encoder.scores_for_paint
+    # paint_score(dec_scores[0], x, pred)  # [0]是去batch中的第0个
 
 
 if __name__ == '__main__':
