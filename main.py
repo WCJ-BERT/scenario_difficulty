@@ -11,7 +11,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 
 def train(model, loss_fn, optimizer, dataloader, use_gpu=False):
-    exp_name = 'experiment_2'
+    exp_name = 'experiment_3'
     writer = SummaryWriter('logs/' + exp_name)
     model_path = 'checkpoint/' + exp_name
     os.makedirs(model_path)
