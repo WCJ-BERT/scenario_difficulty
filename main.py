@@ -10,8 +10,8 @@ from torch.utils.tensorboard import SummaryWriter
 
 
 
-def train(model, loss_fn, optimizer, dataloader, use_gpu=False):
-    exp_name = 'experiment_2'
+def train(model, loss_fn, optimizer, dataloader, use_gpu=True):
+    exp_name = 'experiment_3'
     writer = SummaryWriter('logs/' + exp_name)
     model_path = 'checkpoint/' + exp_name
     os.makedirs(model_path)
@@ -39,7 +39,7 @@ def train(model, loss_fn, optimizer, dataloader, use_gpu=False):
 
     writer.close()
 
-def main(gpu_id=None):
+def main(gpu_id):
     root_path = os.getcwd()
     data = pd.read_csv(root_path + '/' + 'data' + '/' + 'all_tf.csv')
     data_value = data.values
@@ -66,7 +66,8 @@ def main(gpu_id=None):
 
 
 if __name__ == '__main__':
-    main(gpu_id=None)
+    GPU_id = torch.cuda.current_device()
+    main(GPU_id)
     # model = Transformer(n_head=2)
     # ckpt_path = 'checkpoint/experiment_1/ckpt_epoch_999.pth'
     # checkpoint = torch.load(ckpt_path)
